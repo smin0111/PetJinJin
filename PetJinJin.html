@@ -1,219 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PetJinJin</title>
   <style>
     #headimg {
-  background-image: url(img/IMG_1542.JPG);
-  width: 100%;
-  height: 250px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 70% 40%;
-  position: relative; /* 자식 요소들의 absolute 기준 */
-}
+      background-image: url(img/IMG_1542.JPG);
+      width: 100%;
+      height: 250px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 70% 40%;
+      position: relative;
+    }
 
-/* 로그인/회원가입 - 오른쪽 상단 고정 */
-#divid {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-  font-size: 18px;
-  font-weight: 700;
-}
+    #divid {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 18px;
+      font-weight: 700;
+    }
 
-/* 로고1 - 중앙에 위치 */
-#logobg1 {
-  position: absolute;
-  top: 90px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 50px;
-  background-color: #FFF3E7;
-  border-radius: 50px;
-  text-align: center;
-  line-height: 50px;
-  font-size: 32px;
-  font-weight: 700;
-  z-index: 2; /* 위쪽에 올라오게 */
-}
+    #logobg1 {
+      position: absolute;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 50px;
+      background-color: #FFF3E7;
+      border-radius: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 32px;
+      font-weight: 700;
+     
+    }
 
-/* 로고2 - 약간 아래로 겹쳐지게 */
-#logobg2 {
-  position: absolute;
-  top: 130px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 250px;
-  height: 50px;
-  background-color: #FFF3E7;
-  border-radius: 50px;
-  text-align: center;
-  line-height: 50px;
-  font-size: 32px;
-  font-weight: 700;
-  z-index: 1;
-}
-#divnav {
-  width: 100%;
-  height: 50px;
-  background-color: #FFF3E7;
-  margin-top: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 300px; 
-  flex-wrap: wrap; 
-}
+    #logobg2 {
+      position: absolute;
+      top: 130px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 250px;
+      height: 50px;
+      background-color: #FFF3E7;
+      border-radius: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 32px;
+      font-weight: 700;
+      z-index: 1;
+    }
 
-.title {
-  margin: 0;
-  font-weight: 600;
-  font-size: 18px;
-  text-decoration: none;
-  color: black;
-}
-.search-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px; /* 검색창과 사진 간격 */
-  margin-top: 80px;
-}
+    #divnav {
+      width: 100%;
+      height: 50px;
+      background-color: #FFF3E7;
+      margin-top: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 300px;
+      flex-wrap: wrap;
+    }
 
-.search-wrapper {
-  position: relative;
-  width: 500px;
-  margin-top: -500px;
-  
-}
+    .title {
+      margin: 0;
+      font-weight: 600;
+      font-size: 18px;
+      text-decoration: none;
+      color: black;
+    }
 
-.search-input {
-  width: 100%;
-  height: 50px;
-  padding: 0 50px 0 20px;
-  border-radius: 30px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  box-sizing: border-box;
-}
+    .search-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 80px;
+      position: relative;
+    }
 
-.search-btn {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  width: 40px;
-  height: 40px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
+    .search-wrapper {
+      position: relative;
+      width: 500px;
+      margin-top: -500px;
+    }
 
-.search-btn img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+    .search-input {
+      width: 100%;
+      height: 50px;
+      padding: 0 50px 0 20px;
+      border-radius: 30px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
 
+    .search-btn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
 
-.dog-images {
-    position: relative;
-    width: 500px;
-    height: 500px;
-  }
+    .search-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
-.dog-images img {
-    position: absolute;
-    width: 300px;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-  }
+    .dog-images {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      user-select: none;
+    }
 
-  .dog-images img:nth-child(1) {
-    left: 100px;
-    top: -20px;
-    z-index: 1;
-  }
+    .dog-images img {
+      position: absolute;
+      width: 300px;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.5s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
 
-  .dog-images img:nth-child(2) {
-    left: 200px;
-    z-index: 3;
-  }
+    .dog-images img.active {
+      opacity: 1;
+      pointer-events: auto;
+      left: 190px;
+      top: -20px;
+      z-index: 3;
+      transform: scale(1);
+    }
 
-  .dog-images img:nth-child(3) {
-    left: 300px;
-    top: -20px;
-    z-index: 2;
-  }
-  .ctig{
-    list-style: none;
-    width: 100px;
-    height: 50px;
-    background-color: orange;
-    border-radius: 10px;
-    text-align: center;
-    line-height: 20px;
-    display: inline-block;
-    margin: 10px;
-  }
-  .ctig a{
-    text-decoration: none;
-  }
-  #ulform{
-    margin-left: 200px;
-    margin-top: -480px;
-  }
-  #arrowbtn1,
-#arrowbtn2 {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-80%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  background-color: orange;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 10;
-}
+    .dog-images img.prev {
+      opacity: 0.5;
+      pointer-events: none;
+      left: 80px;
+      top: 20px;
+      z-index: 2;
+      transform: scale(0.8);
+    }
 
-#arrowbtn1 {
-  left: calc(50% + 50px); /* 강아지 슬라이드 왼쪽에 정렬 */
-}
+    .dog-images img.next {
+      opacity: 0.5;
+      pointer-events: none;
+      left: 300px;
+      top: 20px;
+      z-index: 1;
+      transform: scale(0.8);
+    }
 
-#arrowbtn2 {
-  left: calc(50% + 650px); /* 강아지 슬라이드 오른쪽에 정렬 */
-}
-</style>
+    .ctig {
+      list-style: none;
+      width: 100px;
+      height: 50px;
+      background-color: orange;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 20px;
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .ctig a {
+      text-decoration: none;
+      color: black;
+    }
+
+    #ulform {
+      margin-left: 200px;
+      margin-top: -480px;
+    }
+
+    #arrowbtn1,
+    #arrowbtn2 {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-80%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background-color: orange;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 10;
+      user-select: none;
+    }
+
+    #arrowbtn1 {
+      left: calc(50% + 50px);
+    }
+
+    #arrowbtn2 {
+      left: calc(50% + 630px);
+    }
+  </style>
 </head>
 <body>
   <header>
     <div id="headimg">
       <div id="divid">
-        <a href="">로그인</a>
-        <span>.</span>
-        <a href="">회원가입</a>
+        <a href="">로그인</a><span>.</span><a href="">회원가입</a>
       </div>
       <div id="logobg1">펫진진</div>
       <div id="logobg2">PetJinJin</div>
     </div>
   </header>
+
   <nav>
-<div id="divnav">
-  <a href="" class="title">음식</a>
-  <a href="" class="title">병원</a>
-  <a href="" class="title">제품</a>
-</div>
+    <div id="divnav">
+      <a href="" class="title">음식</a>
+      <a href="" class="title">병원</a>
+      <a href="" class="title">제품</a>
+    </div>
   </nav>
+
   <section class="search-section" style="position: relative;">
     <div class="search-wrapper">
       <input type="text" placeholder="검색하기" class="search-input" />
@@ -221,33 +238,64 @@
         <img src="img/search_11771235.png" alt="검색" />
       </button>
     </div>
-  
-    <!-- 강아지 이미지 슬라이드 -->
-    <div class="dog-images">
+
+    <div class="dog-images" id="dogImages">
       <img src="img/IMG_1541.JPG" alt="강아지1" />
       <img src="img/KakaoTalk_Photo_2025-07-08-15-35-36 001.jpeg" alt="강아지2" />
       <img src="img/KakaoTalk_Photo_2025-07-08-15-35-36 002.jpeg" alt="강아지3" />
     </div>
-  
-    <!-- 좌우 버튼 -->
+
     <button id="arrowbtn1">&#10094;</button>
     <button id="arrowbtn2">&#10095;</button>
   </section>
-  
+
   <form action="" id="ulform">
     <ul>
       <li class="ctig"><a href=""><p>배변패드</p></a></li>
       <li class="ctig"><a href=""><p>캣타워</p></a></li>
       <li class="ctig"><a href=""><p>유산균</p></a></li>
-      <br>
+      <br />
       <li class="ctig"><a href=""><p>고양이모래</p></a></li>
       <li class="ctig"><a href=""><p>치약</p></a></li>
       <li class="ctig"><a href=""><p>펫티슈</p></a></li>
     </ul>
   </form>
 
-  <footer>
+  <footer></footer>
 
-  </footer>
+  <script>
+    const images = document.querySelectorAll('#dogImages img');
+    const prevBtn = document.getElementById('arrowbtn1');
+    const nextBtn = document.getElementById('arrowbtn2');
+
+    let current = 0;
+
+    function updateImages() {
+      const total = images.length;
+      images.forEach((img, i) => {
+        img.classList.remove('active', 'prev', 'next');
+      });
+
+      images[current].classList.add('active');
+
+      const prevIndex = (current - 1 + total) % total;
+      images[prevIndex].classList.add('prev');
+
+      const nextIndex = (current + 1) % total;
+      images[nextIndex].classList.add('next');
+    }
+
+    prevBtn.addEventListener('click', () => {
+      current = (current - 1 + images.length) % images.length;
+      updateImages();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      current = (current + 1) % images.length;
+      updateImages();
+    });
+
+    updateImages();
+  </script>
 </body>
 </html>
