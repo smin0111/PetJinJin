@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <style>
+#logobg1 {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 50px;
+  background-color: #FFF3E7;
+  border-radius: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* 로고2 - 약간 아래로 겹쳐지게 */
+#logobg2 {
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 50px;
+  background-color: #FFF3E7;
+  border-radius: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 32px;
+  font-weight: 700;
+}
+#main{
+    display: flex;
+    position: relative;
+    left: 25%;
+    width: 50%;
+    height: 600px;
+    background-color: #FFF3E7;
+    margin-top: 150px;
+}
+#title{
+    position: absolute;
+    left: 42%;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 150px;
+}
+#main input{
+  display: flex;
+  width: 70%;
+  height: 60px;
+}
+#userId{
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  font-size: 24px;
+  padding-left: 20px;
+}
+#userPw{
+  position: absolute;
+  top: 260px;
+  left: 100px;
+  padding-left: 20px;
+  font-size: 24px;
+}
+#main ul{
+  list-style-type: none;
+  position: absolute;
+  left: 10%;
+  top: 330px;
+}
+#main li{
+  display: inline;
+  gap: 30px;
+  margin: 50px;
+}
+a{
+  text-decoration: none;
+}
+#btn{
+  position: absolute;
+  width: 60%;
+  height: 60px;
+  border-radius: 17px;
+  border: none;
+  top: 450px;
+  left: 150px;
+  font-size: 36px;
+  font-weight: 600;
+  cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <header>
+    <div>
+        <div id="logobg1">펫진진</div>
+        <div id="logobg2">PetJinJin</div>
+      </div>
+    </header>
+
+    <form action="">
+        <div id="main">
+        <legend id="title">로그인</legend>
+
+        <input id="userId" type="text" placeholder="아이디">
+        <input id="userPw" type="password" name="" id="" placeholder="비밀번호">
+
+        <ul>
+          <li><a href="" >아이디 찾기</a></li>
+          <li><a href="" >비밀번호 찾기</a></li>
+          <li><a href="signup.html" >회원가입</a></li>
+        </ul>
+        <button type="submit" id="btn">로그인</button>
+        </div>
+
+    </form>
+</body>
+</html>

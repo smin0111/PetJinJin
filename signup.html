@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+#logobg1 {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 50px;
+  background-color: #FFF3E7;
+  border-radius: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* 로고2 - 약간 아래로 겹쳐지게 */
+#logobg2 {
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 50px;
+  background-color: #FFF3E7;
+  border-radius: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 32px;
+  font-weight: 700;
+}
+#main{
+    display: flex;
+    position: relative;
+    left: 25%;
+    width: 50%;
+    height: 600px;
+    background-color: #FFF3E7;
+    margin-top: 150px;
+}
+#title{
+    position: absolute;
+    left: 38%;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 150px;
+}
+.userInput{
+  position: absolute;
+  width: 50%;
+  height: 40px;
+  padding-left: 20px;
+  font-size: 24px;
+}
+#userId{
+  position: absolute;
+  top: 140px;
+  left: 170px;
+}
+#userPw{
+  position: absolute;
+  top: 190px;
+  left: 170px;
+}
+#PwCk{
+  position: absolute;
+  top: 240px;
+  left: 170px;
+}
+#userName{
+  position: absolute;
+  top: 290px;
+  left: 170px;
+}
+#userPon{
+  position: absolute;
+  top: 340px;
+  left: 170px;  
+}
+#main ul{
+  list-style-type: none;
+  position: absolute;
+  left: 10%;
+  top: 420px;
+}
+#main li{
+  display: inline;
+  gap: 30px;
+  margin: 40px;
+}
+a{
+  text-decoration: none;
+}
+#btn{
+  position: absolute;
+  width: 60%;
+  height: 60px;
+  border-radius: 17px;
+  border: none;
+  top: 500px;
+  left: 150px;
+  font-size: 36px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+    <div>
+        <div id="logobg1">펫진진</div>
+        <div id="logobg2">PetJinJin</div>
+      </div>
+    </header>
+
+    <form action="" id="mainfrom">
+        <div id="main">
+
+        <legend id="title">회원가입</legend>
+
+        <input class="userInput" name="userId" id="userId" type="text" placeholder="아이디" required>
+        <input class="userInput" name="userPw" id="userPw" type="text" name="" id="" placeholder="비밀번호" required>
+        <input class="userInput" name="PwCk" id="PwCk" type="text" placeholder="비밀번호 확인" required>
+        <input class="userInput" name="userName" id="userName" type="text" placeholder="이름" required>
+        <input class="userInput" name="userPon" id="userPon" type="tel" placeholder="전화번호" required>
+
+        <ul>
+          <li>
+            <a href="" >
+            <input type="checkbox" name="cb1">
+            펫진진 이용약관
+            </a>
+        </li>
+          <li>
+            <a href="" >
+                <input type="checkbox" name="cb2">
+                개인정보 수집 및 이용
+            </a>
+        </li>
+        </ul>
+        <button type="submit" id="btn">인증요청</button>
+        </div>
+    </form>
+
+    <script>
+        const $btn = document.getElementById('btn');
+        const $form = document.getElementById('mainform');
+        
+        $form.onsubmit = function(){
+            let $cb1 = this.querySelector('input[name=cb1]').value;
+            if(!$cb1.checked){
+                alert('펫진진 이용약관에 동의해주세요')
+                return false;
+            }
+
+            let $cb2 = this.querySelector('input[name=cb2]').value;
+            if(!$cb2.checked){
+                alert('개인정보 수집 및 이용 약관에 동의해주세요')
+                return false;
+            }
+        }
+            
+    </script>
+</body>
+</html>
