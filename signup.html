@@ -1,172 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
-    <style>
-#logobg1 {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 50px;
-  background-color: #FFF3E7;
-  border-radius: 50px;
-  text-align: center;
-  line-height: 50px;
-  font-size: 32px;
-  font-weight: 700;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>회원가입</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-/* 로고2 - 약간 아래로 겹쳐지게 */
-#logobg2 {
-  position: absolute;
-  top: 90px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 250px;
-  height: 50px;
-  background-color: #FFF3E7;
-  border-radius: 50px;
-  text-align: center;
-  line-height: 50px;
-  font-size: 32px;
-  font-weight: 700;
-}
-#main{
-    display: flex;
-    position: relative;
-    left: 25%;
-    width: 50%;
-    height: 600px;
-    background-color: #FFF3E7;
-    margin-top: 150px;
-}
-#title{
-    position: absolute;
-    left: 38%;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 150px;
-}
-.userInput{
-  position: absolute;
-  width: 50%;
-  height: 40px;
-  padding-left: 20px;
-  font-size: 24px;
-}
-#userId{
-  position: absolute;
-  top: 140px;
-  left: 170px;
-}
-#userPw{
-  position: absolute;
-  top: 190px;
-  left: 170px;
-}
-#PwCk{
-  position: absolute;
-  top: 240px;
-  left: 170px;
-}
-#userName{
-  position: absolute;
-  top: 290px;
-  left: 170px;
-}
-#userPon{
-  position: absolute;
-  top: 340px;
-  left: 170px;  
-}
-#main ul{
-  list-style-type: none;
-  position: absolute;
-  left: 10%;
-  top: 420px;
-}
-#main li{
-  display: inline;
-  gap: 30px;
-  margin: 40px;
-}
-a{
-  text-decoration: none;
-}
-#btn{
-  position: absolute;
-  width: 60%;
-  height: 60px;
-  border-radius: 17px;
-  border: none;
-  top: 500px;
-  left: 150px;
-  font-size: 36px;
-  font-weight: 600;
-  cursor: pointer;
-}
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #fffaf5;
+    }
 
-    </style>
+    header {
+      text-align: center;
+      position: relative;
+      height: 150px;
+    }
+
+    #logobg1 {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 50px;
+      background-color: #FFF3E7;
+      border-radius: 50px;
+      line-height: 50px;
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    #logobg2 {
+      position: absolute;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 250px;
+      height: 50px;
+      background-color: #FFF3E7;
+      border-radius: 50px;
+      line-height: 50px;
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    #main {
+      max-width: 600px;
+      margin: 10px auto 40px;
+      padding: 40px 20px;
+      background-color: #FFF3E7;
+      border-radius: 12px;
+      position: relative;
+    }
+
+    #title {
+      text-align: center;
+      font-weight: 700;
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    .userInput {
+      width: 100%;
+      height: 50px;
+      margin: 10px 0;
+      padding-left: 20px;
+      font-size: 18px;
+    }
+
+    #pwMismatchMsg {
+      font-size: 14px;
+      color: red;
+      display: none;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    ul li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    #btn {
+      width: 100%;
+      height: 60px;
+      border-radius: 17px;
+      border: none;
+      font-size: 24px;
+      font-weight: 600;
+      cursor: pointer;
+      background-color: #ffd7a8;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 480px) {
+      #logobg1 {
+        width: 120px;
+        font-size: 24px;
+        top: 40px;
+      }
+
+      #logobg2 {
+        width: 200px;
+        font-size: 24px;
+        top: 75px;
+      }
+
+      #main {
+        margin-top: 160px;
+        padding: 30px 15px;
+      }
+
+      #title {
+        font-size: 28px;
+      }
+
+      .userInput {
+        font-size: 16px;
+        height: 45px;
+      }
+
+      ul li {
+        flex-direction: column;
+        text-align: center;
+        font-size: 12px;
+      }
+
+      #btn {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-    <div>
-        <div id="logobg1">펫진진</div>
-        <div id="logobg2">PetJinJin</div>
-      </div>
-    </header>
+  <header>
+    <div id="logobg1">펫진진</div>
+    <div id="logobg2">PetJinJin</div>
+  </header>
 
-    <form action="" id="mainfrom">
-        <div id="main">
+  <form name="mainform">
+    <div id="main">
+      <legend id="title">회원가입</legend>
 
-        <legend id="title">회원가입</legend>
+      <input class="userInput" name="userId" id="userId" type="text" placeholder="아이디" required />
+      <input class="userInput" name="userPw" id="userPw" type="password" placeholder="비밀번호" required />
+      <input class="userInput" name="PwCk" id="PwCk" type="password" placeholder="비밀번호 확인" required />
+      <div id="pwMismatchMsg">비밀번호가 일치하지 않습니다.</div>
+      <input class="userInput" name="userName" id="userName" type="text" placeholder="이름" required />
+      <input class="userInput" name="userPon" id="userPon" type="number" placeholder="전화번호" required />
 
-        <input class="userInput" name="userId" id="userId" type="text" placeholder="아이디" required>
-        <input class="userInput" name="userPw" id="userPw" type="text" name="" id="" placeholder="비밀번호" required>
-        <input class="userInput" name="PwCk" id="PwCk" type="text" placeholder="비밀번호 확인" required>
-        <input class="userInput" name="userName" id="userName" type="text" placeholder="이름" required>
-        <input class="userInput" name="userPon" id="userPon" type="tel" placeholder="전화번호" required>
-
-        <ul>
-          <li>
-            <a href="" >
-            <input type="checkbox" name="cb1">
-            펫진진 이용약관
-            </a>
+      <ul>
+        <li>
+          <input type="checkbox" name="cb1" />
+          <a href="#" class="none">펫진진 이용약관</a>
         </li>
-          <li>
-            <a href="" >
-                <input type="checkbox" name="cb2">
-                개인정보 수집 및 이용
-            </a>
+        <li>
+          <input type="checkbox" name="cb2" />
+          <a href="#" class="none">개인정보 수집 및 이용</a>
         </li>
-        </ul>
-        <button type="submit" id="btn">인증요청</button>
-        </div>
-    </form>
+      </ul>
 
-    <script>
-        const $btn = document.getElementById('btn');
-        const $form = document.getElementById('mainform');
-        
-        $form.onsubmit = function(){
-            let $cb1 = this.querySelector('input[name=cb1]').value;
-            if(!$cb1.checked){
-                alert('펫진진 이용약관에 동의해주세요')
-                return false;
-            }
+      <button type="submit" id="btn">인증요청</button>
+    </div>
+  </form>
 
-            let $cb2 = this.querySelector('input[name=cb2]').value;
-            if(!$cb2.checked){
-                alert('개인정보 수집 및 이용 약관에 동의해주세요')
-                return false;
-            }
-        }
-            
-    </script>
+  <script>
+    const $form = document.forms.mainform;
+    const $msg = document.getElementById('pwMismatchMsg');
+    const $logo1 = document.getElementById('logobg1');
+    const $logo2 = document.getElementById('logobg2');
+
+    // 로고 클릭 시 메인 페이지 이동
+    $logo1.onclick = () => location.href = "PetJinJin.html";
+    $logo2.onclick = () => location.href = "PetJinJin.html";
+
+    // 약관 링크 알림
+    document.querySelectorAll('.none').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        alert('미구현');
+      });
+    });
+
+    // 폼 제출 시 유효성 검사
+    $form.onsubmit = function () {
+      const cb1 = this.cb1;
+      const cb2 = this.cb2;
+      const pw = this.userPw.value;
+      const pwck = this.PwCk.value;
+
+      if (!cb1.checked) {
+        alert('펫진진 이용약관에 동의해주세요');
+        return false;
+      }
+      if (!cb2.checked) {
+        alert('개인정보 수집 및 이용 약관에 동의해주세요');
+        return false;
+      }
+
+      if (pw !== pwck) {
+        $msg.style.display = 'block';
+        return false;
+      } else {
+        $msg.style.display = 'none';
+      }
+    };
+  </script>
 </body>
 </html>
+
