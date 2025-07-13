@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>testJinJin</title>
+  <title>PetJinJin</title>
   <style>
+    /* 공통 초기화 */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fff;
+    /* 최상위 컨테이너 고정 가로 크기 및 중앙 정렬 */
+    .main-container {
+      width: 1920px; /* 1920px 고정 */
+      margin: 0 auto; /* 화면 가운데 정렬 */
+      position: relative;
+      font-family: '맑은 고딕', sans-serif;
     }
 
     #headimg {
@@ -44,7 +48,7 @@
       position: absolute;
       top: 90px;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%);/*본인 넓이의 50퍼 왼쪽으로 이동 = 정확히 중앙*/
       width: 150px;
       height: 50px;
       background-color: #FFF3E7;
@@ -53,6 +57,7 @@
       line-height: 50px;
       font-size: 32px;
       font-weight: 700;
+      cursor: pointer;
     }
 
     #logobg2 {
@@ -68,7 +73,7 @@
       line-height: 50px;
       font-size: 32px;
       font-weight: 700;
-      z-index: 1;
+      cursor: pointer;
     }
 
     #divnav {
@@ -79,7 +84,7 @@
       justify-content: center;
       align-items: center;
       gap: 300px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap; /* 고정 유지 */
     }
 
     .title {
@@ -87,6 +92,7 @@
       font-size: 18px;
       text-decoration: none;
       color: black;
+      cursor: pointer;
     }
 
     .search-section {
@@ -95,13 +101,14 @@
       align-items: flex-start;
       margin-top: 80px;
       position: relative;
-      flex-wrap: wrap;
       gap: 50px;
+      flex-wrap: nowrap; /* 고정 유지 */
     }
 
     .search-wrapper {
       position: relative;
       width: 500px;
+      flex-shrink: 0;
     }
 
     .search-input {
@@ -121,55 +128,56 @@
       height: 40px;
       background: none;
       border: none;
-      cursor: pointer;
+      cursor: pointer;/* 마우스 포인트 커서로 변경*/
     }
 
     .search-btn img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: contain;/* 이미지가 비율 유지하면서 버튼 안에 들어가도록 함*/
     }
 
     .dog-images {
       position: relative;
       width: 500px;
       height: 500px;
+      flex-shrink: 0;
     }
 
     .dog-images img {
       position: absolute;
       width: 300px;
       height: 500px;
-      object-fit: cover;
+      object-fit: cover;/*이미지가 잘리더라도 영역을 꽉 채우고 비율 유지*/
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: all 0.5s ease;
-      opacity: 0;
-      pointer-events: none;
+      transition: all 0.5s ease;/*상태전환(opacity 변경 등)을 부드러운 애니메이션 처리*/
+      opacity: 0;/*이미지가 안 보이게 설정*/
+      pointer-events: none;/*마우스 클릭 등 이벤트 무시 상태로 만듬*/
     }
 
     .dog-images img.active {
-      opacity: 1;
+      opacity: 1; /*현재 활성 이미지만 보이도록 설정*/
       left: 190px;
       top: -20px;
-      z-index: 3;
-      transform: scale(1);
-      pointer-events: auto;
+      z-index: 3; /*다른 이미지 보다 위에 표시*/
+      transform: scale(1); /*원래 크기로 확대(기본크가 유지)*/
+      pointer-events: auto; /*마우스 이벤트 허용*/
     }
 
     .dog-images img.prev {
-      opacity: 0.5;
+      opacity: 0.5; /*이 건 이미지는 흐리게 표시*/
       left: 80px;
       top: 20px;
-      z-index: 2;
-      transform: scale(0.8);
+      z-index: 2; /*active보다 아래 레이어*/
+      transform: scale(0.8); /*80%로 축소해서 비활성 느낌*/
     }
 
     .dog-images img.next {
       opacity: 0.5;
       left: 300px;
       top: 20px;
-      z-index: 1;
+      z-index: 1; /*가장 뒤에 있는 느낌*/
       transform: scale(0.8);
     }
 
@@ -186,7 +194,6 @@
       color: white;
       font-size: 24px;
       cursor: pointer;
-      z-index: 10;
     }
 
     #arrowbtn1 {
@@ -199,11 +206,13 @@
 
     #ulform {
       margin-top: -450px;
-      margin-left: 200px;
-    }
-
-    .ctig {
+      margin-left: 500px;
       list-style: none;
+    }
+    #ulform ul{
+      list-style-type: none;
+    }
+    #ulform ul li {
       width: 100px;
       height: 50px;
       background-color: orange;
@@ -212,164 +221,119 @@
       line-height: 50px;
       display: inline-block;
       margin: 10px;
+
     }
 
-    .ctig a {
+    .ctig {
       text-decoration: none;
-      color: black;
-    }
-
-    /* 반응형 스타일 */
-    @media (max-width: 1024px) {
-      #divnav {
-        gap: 100px;
-      }
-
-      #arrowbtn1 {
-        left: calc(50% - 200px);
-      }
-
-      #arrowbtn2 {
-        left: calc(50% + 200px);
-      }
-
-      #ulform {
-        margin: 30px auto 0;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .search-section {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 50px;
-      }
-
-      .search-wrapper {
-        width: 90%;
-      }
-
-      .dog-images {
-        width: 100%;
-        height: auto;
-      }
-
-      .dog-images img {
-        position: relative;
-        width: 80%;
-        height: auto;
-        margin: 10px auto;
-        display: block;
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      #arrowbtn1, #arrowbtn2 {
-        display: none;
-      }
-
-      #ulform {
-        margin: 20px auto;
-        text-align: center;
-      }
-
-      #logobg1, #logobg2 {
-        font-size: 24px;
-      }
-
-      #logobg2 {
-        top: 140px;
-      }
+      cursor:pointer;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div id="headimg">
-      <div id="divid">
-        <a href="login.html">로그인</a><span>.</span>
-        <a href="signup.html">회원가입</a>
+  <div class="main-container">
+    <header>
+      <div id="headimg">
+        <div id="divid">
+          <a href="login.html">로그인</a><span>.</span>
+          <a href="signup.html">회원가입</a>
+        </div>
+        <div id="logobg1">펫진진</div>
+        <div id="logobg2">PetJinJin</div>
       </div>
-      <div id="logobg1">펫진진</div>
-      <div id="logobg2">PetJinJin</div>
-    </div>
-  </header>
+    </header>
 
-  <nav>
-    <div id="divnav">
-      <a href="#" class="title">음식</a>
-      <a href="#" class="title">병원</a>
-      <a href="#" class="title">제품</a>
-    </div>
-  </nav>
+    <nav>
+      <div id="divnav">
+        <a href="#" class="title">음식</a>
+        <a href="#" class="title">병원</a>
+        <a href="#" class="title">제품</a>
+      </div>
+    </nav>
 
-  <section class="search-section">
-    <div class="search-wrapper">
-      <input type="text" placeholder="검색하기" class="search-input" />
-      <button class="search-btn">
-        <img src="img/search_11771235.png" alt="검색" />
-      </button>
-    </div>
+    <section class="search-section">
+      <div class="search-wrapper">
+        <input type="text" placeholder="검색하기" class="search-input" />
+        <button class="search-btn" id="searchbtn">
+          <img src="img/search_11771235.png" alt="검색" />
+        </button>
+      </div>
 
-    <div class="dog-images" id="dogImages">
-      <img src="img/ChatGPT Image 2025년 7월 12일 오후 03_39_22.png" alt="강아지1" />
-      <img src="img/ChatGPT Image 2025년 7월 12일 오후 03_08_22.png" alt="강아지2" />
-      <img src="img/ChatGPT Image 2025년 7월 12일 오후 02_13_55.png" alt="강아지3" />
-    </div>
+      <div class="dog-images" id="dogImages">
+        <img id="firstImg" src="img/ChatGPT Image 2025년 7월 12일 오후 03_39_22.png" alt="강아지1"/>
+        <img src="img/ChatGPT Image 2025년 7월 12일 오후 03_08_22.png" alt="강아지2" />
+        <img src="img/ChatGPT Image 2025년 7월 12일 오후 02_13_55.png" alt="강아지3" />
+      </div>
+      <button id="arrowbtn1">&#10094;</button>
+      <button id="arrowbtn2">&#10095;</button>
+    </section>
 
-
-    <button id="arrowbtn1">&#10094;</button>
-    <button id="arrowbtn2">&#10095;</button>
-  </section>
-
-  <form id="ulform">
-    <ul>
-      <li class="ctig"><a href="#" class="none"><p>배변패드</p></a></li>
-      <li class="ctig"><a href="#" class="none"><p>캣타워</p></a></li>
-      <li class="ctig"><a href="#" class="none"><p>유산균</p></a></li>
-      <br />
-      <li class="ctig"><a href="#" class="none"><p>고양이모래</p></a></li>
-      <li class="ctig"><a href="#" class="none"><p>치약</p></a></li>
-      <li class="ctig"><a href="#" class="none"><p>펫티슈</p></a></li>
-    </ul>
-  </form>
+    <form id="ulform">
+      <ul>
+        <li><a href="#" class="ctig">배변패드</a></li>
+        <li><a href="#" class="ctig">캣타워</a></li>
+        <li><a href="#" class="ctig">유산균</a></li>
+        <br />
+        <li><a href="#" class="ctig">고양이모래</a></li>
+        <li><a href="#" class="ctig">치약</a></li>
+        <li><a href="#" class="ctig">펫티슈</a></li>
+      </ul>
+    </form>
+  </div>
 
   <script>
+    // 강아지 슬라이드 설정
     const images = document.querySelectorAll('#dogImages img');
     const prevBtn = document.getElementById('arrowbtn1');
     const nextBtn = document.getElementById('arrowbtn2');
     let current = 0;
-
+    //images[0]부터 시작하므로 0번 째 이미지가 보이게함.
     function updateImages() {
       const total = images.length;
+      //현재는 이미지가 총 3장이라 total = 3
       images.forEach((img, i) => {
         img.classList.remove('active', 'prev', 'next');
-      });
-      images[current].classList.add('active');
-      images[(current - 1 + total) % total].classList.add('prev');
-      images[(current + 1) % total].classList.add('next');
-    }
+      });//이미지 각각에 해당 클래스 전부 제거
+
+      images[current].classList.add('active');//현재 인데스의 이미지를 중앙으로 지정
+      images[(current - 1 + total) % total].classList.add('prev');//앞에서 하나 줄인 인데스를 구함 = total은 음수가 되는 걸 방지
+      //current = 0이면 prev =2
+      images[(current + 1) % total].classList.add('next');//%total은 범위를 0~n-1로 유지
+    }//current = 2 면 next = 0
 
     prevBtn.addEventListener('click', () => {
       current = (current - 1 + images.length) % images.length;
       updateImages();
-    });
+    });//<-버튼 클릭시 변수를 줄이고 이미지를 업데이트 함
 
     nextBtn.addEventListener('click', () => {
       current = (current + 1) % images.length;
       updateImages();
     });
-
+    //처음 로딩 되었을 떄 초기 이미지 상태 셋팅
     updateImages();
+    //회원가입 쿠폰 이미지 누를 시 회원가입 창 이동
+    const $firstImg = document.getElementById('firstImg')
+    $firstImg.onclick = () =>
+    location.href = 'signup.html';
 
-    document.querySelectorAll('.none').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
+    //미구현 링크 클릭시 미구현 알러트창 표시
+    const $none = document.querySelectorAll('.title');
+    [...$none].forEach(link => {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
         alert('미구현');
       });
     });
 
+    //검색버튼 비 활성화
+    const $searchbtn = document.getElementById('searchbtn');
+    $searchbtn.addEventListener('click', function(e){
+      alert('미구현');
+    });
+
+
+    //logo클릭시 메인 페이지 이동
     document.getElementById('logobg1').onclick = () =>
       location.href = 'PetJinJin.html';
     document.getElementById('logobg2').onclick = () =>

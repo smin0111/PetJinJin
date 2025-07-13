@@ -73,7 +73,7 @@
       font-size: 18px;
     }
 
-    #pwMismatchMsg {
+    #ckmsg {
       font-size: 14px;
       color: red;
       display: none;
@@ -167,7 +167,7 @@
       <input class="userInput" name="userId" id="userId" type="text" placeholder="아이디" required />
       <input class="userInput" name="userPw" id="userPw" type="password" placeholder="비밀번호" required />
       <input class="userInput" name="PwCk" id="PwCk" type="password" placeholder="비밀번호 확인" required />
-      <div id="pwMismatchMsg">비밀번호가 일치하지 않습니다.</div>
+      <div id="ckmsg">비밀번호가 일치하지 않습니다.</div>
       <input class="userInput" name="userName" id="userName" type="text" placeholder="이름" required />
       <input class="userInput" name="userPon" id="userPon" type="number" placeholder="전화번호" required />
 
@@ -188,7 +188,7 @@
 
   <script>
     const $form = document.forms.mainform;
-    const $msg = document.getElementById('pwMismatchMsg');
+    const $msg = document.getElementById('ckmsg');
     const $logo1 = document.getElementById('logobg1');
     const $logo2 = document.getElementById('logobg2');
 
