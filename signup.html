@@ -191,11 +191,11 @@
     const $msg = document.getElementById('ckmsg');
     const $logo1 = document.getElementById('logobg1');
     const $logo2 = document.getElementById('logobg2');
-
+  
     // 로고 클릭 시 메인 페이지 이동
     $logo1.onclick = () => location.href = "PetJinJin.html";
     $logo2.onclick = () => location.href = "PetJinJin.html";
-
+  
     // 약관 링크 알림
     document.querySelectorAll('.none').forEach(link => {
       link.addEventListener('click', event => {
@@ -203,14 +203,14 @@
         alert('미구현');
       });
     });
-
-    // 폼 제출 시 유효성 검사
+  
+    // 폼 제출 시 유효성 검사 + localStorage 저장
     $form.onsubmit = function () {
       const cb1 = this.cb1;
       const cb2 = this.cb2;
       const pw = this.userPw.value;
       const pwck = this.PwCk.value;
-
+  
       if (!cb1.checked) {
         alert('펫진진 이용약관에 동의해주세요');
         return false;
@@ -219,15 +219,30 @@
         alert('개인정보 수집 및 이용 약관에 동의해주세요');
         return false;
       }
-
+  
       if (pw !== pwck) {
         $msg.style.display = 'block';
         return false;
       } else {
         $msg.style.display = 'none';
       }
+  
+      // ✅ localStorage에 회원 정보 저장
+      const id = this.userId.value;
+      const name = this.userName.value;
+      const phone = this.userPon.value;
+  
+      localStorage.setItem("userId", id);
+      localStorage.setItem("userPw", pw);
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userPon", phone);
+  
+      alert("회원가입이 완료되었습니다!");
+      location.href = "login.html";  // 로그인 페이지로 이동
+      return false;
     };
   </script>
+  
 </body>
 </html>
 

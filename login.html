@@ -2,153 +2,103 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>로그인</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      padding: 0;
       font-family: sans-serif;
-      background-color: #fff;
+      background-color: #fffaf5;
     }
-
-    #logobg1, #logobg2 {
+    header {
+      text-align: center;
+      position: relative;
+      height: 150px;
+    }
+    #logobg1 {
       position: absolute;
+      top: 50px;
       left: 50%;
       transform: translateX(-50%);
+      width: 150px;
+      height: 50px;
       background-color: #FFF3E7;
       border-radius: 50px;
-      text-align: center;
       line-height: 50px;
       font-size: 32px;
       font-weight: 700;
-      z-index: 10;
     }
-
-    #logobg1 {
-      top: 50px;
-      width: 150px;
-      height: 50px;
-    }
-
     #logobg2 {
+      position: absolute;
       top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
       width: 250px;
       height: 50px;
-    }
-
-    #main {
-      position: relative;
-      width: 50%;
-      height: 600px;
-      margin: 150px auto 0 auto;
       background-color: #FFF3E7;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 15px;
-    }
-
-    #title {
+      border-radius: 50px;
+      line-height: 50px;
+      font-size: 32px;
       font-weight: 700;
-      font-size: 48px;
-      margin-bottom: 40px;
     }
-
-    #userId,
-    #userPw {
-      width: 70%;
-      height: 60px;
-      font-size: 24px;
-      padding-left: 20px;
+    #main {
+      max-width: 600px;
+      margin: 10px auto 40px;
+      padding: 40px 20px;
+      background-color: #FFF3E7;
+      border-radius: 12px;
+      position: relative;
+    }
+    #title {
+      text-align: center;
+      font-weight: 700;
+      font-size: 36px;
       margin-bottom: 30px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 8px;
     }
-
-    #main ul {
-      list-style-type: none;
-      padding: 0;
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
+    .userInput {
+      width: 100%;
+      height: 50px;
+      margin: 10px 0;
+      padding-left: 20px;
+      font-size: 18px;
     }
-
-    #main li {
-      display: inline;
-    }
-
-    a {
-      text-decoration: none;
-      font-size: 16px;
-      color: black;
-    }
-
     #btn {
-      width: 60%;
+      width: 100%;
       height: 60px;
       border-radius: 17px;
       border: none;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 600;
-      margin-top: 30px;
       cursor: pointer;
+      background-color: #ffd7a8;
+      margin-top: 20px;
     }
 
-    /* 반응형 처리 */
-    @media screen and (max-width: 768px) {
+    @media (max-width: 480px) {
       #logobg1 {
-        top: 30px;
-        font-size: 24px;
         width: 120px;
-        height: 40px;
-        line-height: 40px;
-      }
-
-      #logobg2 {
-        top: 65px;
         font-size: 24px;
+        top: 40px;
+      }
+      #logobg2 {
         width: 200px;
-        height: 40px;
-        line-height: 40px;
+        font-size: 24px;
+        top: 75px;
       }
-
       #main {
-        width: 90%;
-        height: auto;
-        margin-top: 130px;
-        padding: 30px 0;
+        margin-top: 160px;
+        padding: 30px 15px;
       }
-
       #title {
-        font-size: 36px;
+        font-size: 28px;
       }
-
-      #userId,
-      #userPw {
-        width: 80%;
-        height: 50px;
-        font-size: 18px;
+      .userInput {
+        font-size: 16px;
+        height: 45px;
       }
-
       #btn {
-        width: 70%;
-        height: 50px;
-        font-size: 22px;
-      }
-
-      #main ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-      }
-
-      a {
-        font-size: 14px;
+        font-size: 20px;
       }
     }
   </style>
@@ -159,35 +109,48 @@
     <div id="logobg2">PetJinJin</div>
   </header>
 
-  <form action="">
+  <form name="loginform">
     <div id="main">
       <legend id="title">로그인</legend>
-      <input id="userId" type="text" placeholder="아이디" />
-      <input id="userPw" type="password" placeholder="비밀번호" />
 
-      <ul>
-        <li><a href="#" class="none">아이디 찾기</a></li>
-        <li><a href="#" class="none">비밀번호 찾기</a></li>
-        <li><a href="signup.html">회원가입</a></li>
-      </ul>
+      <input class="userInput" name="loginId" type="text" placeholder="아이디" required />
+      <input class="userInput" name="loginPw" type="password" placeholder="비밀번호" required />
 
       <button type="submit" id="btn">로그인</button>
     </div>
   </form>
 
   <script>
+    const $form = document.forms.loginform;
     const $logo1 = document.getElementById('logobg1');
     const $logo2 = document.getElementById('logobg2');
-    $logo1.onclick = () => location.href = ("PetJinJin.html");
-    $logo2.onclick = () => location.href = ("PetJinJin.html");
 
-    const $none = document.querySelectorAll('.none');
-    [...$none].forEach(link => {
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
-        alert('미구현');
-      });
-    });
+    // 로고 클릭 시 메인 페이지 이동
+    $logo1.onclick = () => location.href = "PetJinJin.html";
+    $logo2.onclick = () => location.href = "PetJinJin.html";
+
+    // 폼 제출 시 로그인 확인 + 쿠키 저장
+    $form.onsubmit = function () {
+      const inputId = this.loginId.value;
+      const inputPw = this.loginPw.value;
+
+      const savedId = localStorage.getItem("userId");
+      const savedPw = localStorage.getItem("userPw");
+
+      if (inputId === savedId && inputPw === savedPw) {
+        // ✅ 로그인 성공: 쿠키에 아이디 저장 (1일 유지)
+        const expiry = new Date();
+        expiry.setDate(expiry.getDate() + 1);
+        document.cookie = `userId=${inputId}; expires=${expiry.toUTCString()}; path=/`;
+
+        alert("로그인 성공! 메인 페이지로 이동합니다.");
+        location.href = "signin.html";
+      } else {
+        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+      }
+
+      return false; // 페이지 리로드 방지
+    };
   </script>
 </body>
 </html>

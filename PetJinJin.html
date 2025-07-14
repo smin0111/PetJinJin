@@ -338,6 +338,26 @@
       location.href = 'PetJinJin.html';
     document.getElementById('logobg2').onclick = () =>
       location.href = 'PetJinJin.html';
+      // 로그인 상태 유지 확인
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// 예: 페이지 로드시 사용자 ID가 쿠키에 있다면 환영 메시지 표시
+window.onload = () => {
+  const userId = getCookie("userId");
+  if (userId) {
+    alert(`${userId}님 환영합니다!`);
+    // 또는 로그인/회원가입 버튼을 '로그아웃'으로 바꿔도 됨
+  }
+};
+function logout() {
+  document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  location.reload(); // 또는 로그인 페이지로 이동
+}
+
   </script>
 </body>
 </html>
