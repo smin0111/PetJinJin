@@ -14,13 +14,11 @@
 
     /* 최상위 컨테이너 고정 가로 크기 및 중앙 정렬 */
     .main-container {
-  max-width: 1920px; /* 최대 너비는 그대로 유지 */
-  width: 100%;        /* ✅ 화면 크기에 맞게 줄어들 수 있게 */
-  margin: 0 auto;
-  position: relative;
-  font-family: '맑은 고딕', sans-serif;
-}
-
+      width: 1920px; /* 1920px 고정 */
+      margin: 0 auto; /* 화면 가운데 정렬 */
+      position: relative;
+      font-family: '맑은 고딕', sans-serif;
+    }
 
     #headimg {
       background-image: url(img/IMG_1542.JPG);
@@ -237,8 +235,9 @@
     <header>
       <div id="headimg">
         <div id="divid">
-          <a href="login.html">로그인</a><span>.</span>
-          <a href="signup.html">회원가입</a>
+          <a href="mypage.html">마이페이지</a><span>.</span>
+          <a href="PetJinJin.html">로그아웃</a>
+          <span id="login-timer" style="margin-left: 15px; font-weight: 500; color: #555;">로그인 시간: --초</span>
         </div>
         <div id="logobg1">펫진진</div>
         <div id="logobg2">PetJinJin</div>
@@ -340,100 +339,46 @@
       location.href = 'PetJinJin.html';
     document.getElementById('logobg2').onclick = () =>
       location.href = 'PetJinJin.html';
-      // 로그인 상태 유지 확인
+      // 쿠키에서 특정 이름의 값 가져오기 함수
       function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
+  const value = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return value ? value.pop() : null;
 }
 
 
-// 예: 페이지 로드시 사용자 ID가 쿠키에 있다면 환영 메시지 표시
-window.onload = () => {
-  const userId = getCookie("userId");
-  if (userId) {
-    alert(`${userId}님 환영합니다!`);
-    // 또는 로그인/회원가입 버튼을 '로그아웃'으로 바꿔도 됨
+// 로그인 만료시간(초) 표시 함수
+function startLoginTimer() {
+  const timerSpan = document.getElementById('login-timer');
+
+  // 쿠키에서 로그인 만료 시간(UTC ISO 문자열)을 가져온다고 가정 (아래 setCookie 함수 참고)
+  const expiryStr = getCookie('loginExpiry');
+  if (!expiryStr) {
+    timerSpan.textContent = "로그인 시간: 없음";
+    return;
   }
-};
 
-function logout() {
-  document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  location.reload(); // 또는 로그인 페이지로 이동
+  const expiryTime = new Date(expiryStr);
+
+  function updateTimer() {
+    const now = new Date();
+    let diff = Math.floor((expiryTime - now) / 1000); // 초 단위 차이
+
+    if (diff < 0) {
+      timerSpan.textContent = "로그인 시간: 만료됨";
+      clearInterval(intervalId);
+      return;
+    }
+
+    timerSpan.textContent = `로그인 시간: ${diff}초 남음`;
+  }
+
+  updateTimer();
+  const intervalId = setInterval(updateTimer, 1000);
 }
+
+// 페이지 로드 시 타이머 시작
+window.onload = startLoginTimer;
 
   </script>
-  <!-- 카카오 SDK 로드 (반드시 <head>나 body 맨 아래에 넣기) -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script>
-  // JavaScript 키로 초기화 (REST API 키가 아님, 카카오 앱에서 JS 키 복사)
-  Kakao.init('8ee7891ad03e5d7cb9ad3d1a9b0d9fea');
-
-  // 초기화 여부 확인
-  console.log(Kakao.isInitialized());
-
-   function sendKakaoLink() {
-      Kakao.API.request({
-        url: '/v2/api/talk/memo/default/send',
-        data: {
-          template_object: {
-            object_type: 'text',
-            text: '🚴 자전거 이용이 종료되었습니다.\n⏱ 이용시간: 25분\n💰 결제금액: 1,000원',
-            link: {
-              web_url: 'http://petjinjin.kr',
-              mobile_web_url: 'http://petjinjin.kr'
-            },
-            button_title: '이용 내역 보기'
-          }
-        },
-        success: function(response) {
-          alert('메시지 전송 성공!');
-        },
-        fail: function(error) {
-          console.error('메시지 전송 실패', error);
-        }
-      });
-    }
-</script>
-
-<script>
-function kakaoLogin() {
-  Kakao.Auth.login({
-    scope: 'profile_nickname, talk_message',
-    success: function(authObj) {
-      console.log('로그인 성공', authObj);
-      Kakao.API.request({
-        url: '/v2/api/talk/memo/default/send',
-        data: {
-          template_object: {
-            object_type: 'text',
-            text: '🚴 자전거 이용이 종료되었습니다.\n⏱ 이용시간: 25분\n💰 결제금액: 1,000원',
-            link: {
-              web_url: 'http://petjinjin.kr',
-              mobile_web_url: 'http://petjinjin.kr'
-            },
-            button_title: '이용 내역 보기'
-          }
-        },
-        success: function(response) {
-          alert('메시지 전송 성공!');
-        },
-        fail: function(error) {
-          alert('메시지 전송 실패');
-          console.error(error);
-        }
-      });
-    },
-    fail: function(err) {
-      console.error('카카오 로그인 실패', err);
-    }
-  });
-}
-</script>
-
-<button onclick="kakaoLogin()">카카오 로그인</button>
-<!-- 예: 버튼 -->
-<button onclick="sendKakaoLink()">나에게 보내기</button>
-
 </body>
 </html>

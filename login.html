@@ -131,26 +131,27 @@
 
     // 폼 제출 시 로그인 확인 + 쿠키 저장
     $form.onsubmit = function () {
-      const inputId = this.loginId.value;
-      const inputPw = this.loginPw.value;
+  const inputId = this.loginId.value;
+  const inputPw = this.loginPw.value;
 
-      const savedId = localStorage.getItem("userId");
-      const savedPw = localStorage.getItem("userPw");
+  const savedId = localStorage.getItem("userId");
+  const savedPw = localStorage.getItem("userPw");
 
-      if (inputId === savedId && inputPw === savedPw) {
-        // ✅ 로그인 성공: 쿠키에 아이디 저장 (1일 유지)
-        const expiry = new Date();
-        expiry.setDate(expiry.getDate() + 1);
-        document.cookie = `userId=${inputId}; expires=${expiry.toUTCString()}; path=/`;
+  if (inputId === savedId && inputPw === savedPw) {
+    // ✅ 로그인 성공: 쿠키에 아이디 저장 (30초 유지)
+    const expiry = new Date();
+    expiry.setTime(expiry.getTime() + 30 * 1000); // 30초 후 만료
+    document.cookie = `userId=${inputId}; expires=${expiry.toUTCString()}; path=/`;
 
-        alert("로그인 성공! 메인 페이지로 이동합니다.");
-        location.href = "signin.html";
-      } else {
-        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-      }
+    alert("로그인 성공! 메인 페이지로 이동합니다.");
+    location.href = "signin.html";
+  } else {
+    alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+  }
 
-      return false; // 페이지 리로드 방지
-    };
+  return false; // 페이지 리로드 방지
+};
+
   </script>
 </body>
 </html>
